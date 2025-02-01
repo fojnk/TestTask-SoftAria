@@ -36,3 +36,11 @@ java -jar build/libs/site-info-1.0-SNAPSHOT-all.jar  --C --name "Vova Petrov" --
 ```
 
 ## Dependencies
+
+* OpenJDK 17.0.8
+* Gradle  8.10.2
+* Log4j 2.16.0
+* JCommander 1.69
+* Angus 2.0
+* Junit 5.9
+* Lombok 1.18
