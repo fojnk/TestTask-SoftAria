@@ -20,6 +20,8 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
     implementation("org.eclipse.angus:angus-mail:2.0.1")
     implementation("com.beust:jcommander:1.69")
+    implementation("org.apache.logging.log4j:log4j-core:2.16.0")
+    implementation("org.apache.logging.log4j:log4j-api:2.16.0")
 }
 
 tasks.withType<Jar> {

@@ -1,5 +1,9 @@
 package org.example.services.loader;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.example.services.report.ReportGenerator;
+
 import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
@@ -9,6 +13,8 @@ import java.util.Map;
 
 public class ContentLoader {
 
+    private static final Logger logger = LogManager.getLogger(ContentLoader.class);
+
     public static Map<String, String> getPageStates(String sourceFile) {
         Map<String, String> state = new HashMap<>();
         List<URL> urlList = pageList(sourceFile);
@@ -16,6 +22,7 @@ public class ContentLoader {
             String html = readPage(url);
             state.put(url.toString(), html);
         }
+
         return state;
     }
 
@@ -35,7 +42,7 @@ public class ContentLoader {
             }
             return urlList;
         } catch (IOException | NullPointerException e) {
-            System.out.println("Failed to read source file: " + e.getMessage());
+            logger.error("Failed to read source file: " + e.getMessage());
             return urlList;
         }
     }
@@ -60,7 +67,7 @@ public class ContentLoader {
 
             return sb.toString();
         } catch (IOException e) {
-            System.out.println("Failed to read content from " + url + "\ntrace: " + e.getMessage());
+            logger.error("Failed to read content from " + url + "\ntrace: " + e.getMessage());
             return "";
         }
     }

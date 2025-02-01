@@ -5,6 +5,8 @@ import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeBodyPart;
 import jakarta.mail.internet.MimeMessage;
 import jakarta.mail.internet.MimeMultipart;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.example.services.loader.ContentLoader;
 
 import java.io.IOException;
@@ -12,6 +14,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class EmailSender {
+    private static final Logger logger = LogManager.getLogger(EmailSender.class);
     private static final String MAIL_PROPS = "mail.properties";
     private static final String LOGIN = "login";
     private static final String PASSWORD = "password";
@@ -32,7 +35,7 @@ public class EmailSender {
             message = createMessage(mailSession, fromEmail, content, recipients);
             Transport.send(message, fromEmail, mailProps.getProperty(PASSWORD));
         } catch (MessagingException e) {
-            System.out.println("Failed on email sending: " + e.getMessage());
+            logger.error("Failed on email sending: " + e.getMessage());
         }
 
     }
@@ -47,7 +50,7 @@ public class EmailSender {
         try (InputStream input = ContentLoader.class.getClassLoader().getResourceAsStream(MAIL_PROPS)) {
             mailProps.load(input);
         } catch (IOException e) {
-            System.out.println("Failed on loading mail properties: " + e.getMessage());
+            logger.error("Failed on loading mail properties: " + e.getMessage());
         }
         return mailProps;
     }
