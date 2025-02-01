@@ -31,7 +31,19 @@ If you want to use mailing, you need to fill the fields in the **mail.properties
 ```
 
 ### Run
+``` java
+java -jar build/libs/site-info-1.0-SNAPSHOT-all.jar  --C --name "Vova Petrov" --today "src/main/resources/todayData.txt" --yesterday "src/main/resources/yesterdayData
 ```
+
+### Example
+``` java
+// run without yesterday data
+java -jar build/libs/site-info-1.0-SNAPSHOT-all.jar  --C --name "Vova Petrov" --today "src/main/resources/todayData.txt" --yesterday "src/main/resources/yesterdayData
+
+// update yesterday data
+java -jar build/libs/site-info-1.0-SNAPSHOT-all.jar  --C --name "Vova Petrov" --today "src/main/resources/todayData.txt" --yesterday "src/main/resources/yesterdayData --update
+
+// run again without updating and check the result
 java -jar build/libs/site-info-1.0-SNAPSHOT-all.jar  --C --name "Vova Petrov" --today "src/main/resources/todayData.txt" --yesterday "src/main/resources/yesterdayData
 ```
 
